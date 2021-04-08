@@ -1,0 +1,132 @@
+<div class="container-fluid">
+    <h3>Modificaciones de contrato</h3>
+    
+    <ul>
+        
+        <!-- <li>id_modificacion       </li>   -->
+        <!-- <li>id_contrato           </li>   -->
+        <!-- <li>num_informeTecnico    </li>   -->
+        <!-- <li>fecha_informeTecnico  </li>   -->
+        <!-- <li>ampliacion_plazo      </li>   -->
+        <!-- <li>montoAumentos         </li>   -->
+        <!-- <li>montoDisminuciones    </li>   -->
+        <!-- <li>montoObrasExtras      </li>   -->
+        <!-- <li>montoFinal            </li>   -->
+        <!-- <li>numero_Resolucion     </li>   -->
+        <!-- <li>fecha_Resolucion      </li>   -->
+        <!-- <li>fecha_protocolizacion </li>   -->
+        <!-- <li>ingreso_propuestas    </li>   -->
+        <!-- <li>observacion           </li>   -->
+        <!-- <li>id_imputacion         </li>   -->
+
+        
+
+    </ul>
+
+    <table id="modificaciones" class="table table-hover">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>N° Informe</th>
+                <th width="150px">Fecha Informe</th>
+                <th>N°Resol</th>
+                <th width="150px">Fecha Resol</th>
+                <th>Cambio Plazo</th>
+                <th>Aumento</th>
+                <th>Disminución</th>
+                <th>OO.EE</th>
+                <th>Balance Final</th>
+                <th width="200px">Confirmación</th> 
+                <th>Recibido</th> 
+                <th>Ver</th>       
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let modificacion of modificaciones; index as id">
+                <td> {{ id + 1 }}</td>
+                <td>{{modificacion.nro_informe}}</td>
+                <td>{{modificacion.fecha_informe}}</td>
+                <td>{{modificacion.n_resol}}</td>
+                <td>{{modificacion.fecha_res}}</td>
+                <td>{{modificacion.cambio_plazo}}</td>
+                <td>{{modificacion.monto_aum | currency: '$' : 'symbol' : '1.0'}}</td>
+                <td>{{modificacion.monto_dism | currency: '$' : 'symbol' : '1.0'}}</td>
+                <td>{{modificacion.monto_ooee | currency: '$' : 'symbol' : '1.0'}}</td>
+                <td>{{modificacion.monto_aum + modificacion.monto_ooee - modificacion.monto_dism | currency: '$' : 'symbol' : '1.0'}}</td>
+                
+                <td>
+                    <div>{{modificacion.confirmacion}}</div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <button *ngIf="modificacion.recibido" 
+                                (click)="modificacion.recibido = false"
+                                class="btn btn-outline-success ml-2" 
+                                type="button"
+                                >
+                                Recibido
+                        </button>
+                
+                        <button class="btn btn-outline-danger ml-2" 
+                                type="button"
+                                *ngIf="!modificacion.recibido"
+                                (click)="modificacion.recibido = true"
+                                >
+                                No Recibido
+                        </button>        
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-info mr-2"
+                    [routerLink]="['info']">
+                    <i class="fa fa-info-circle"></i>
+                </button>
+                </td>
+            </tr>     
+        </tbody>
+        
+        <tfoot>
+            <tr>
+                <td></td>
+                <td>Total:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{total_aplazamiento}}</td>
+                <td>{{total_aum | currency: '$' : 'symbol' : '1.0'}}</td>
+                <td>{{total_dism | currency: '$' : 'symbol' : '1.0'}}</td>
+                <td>{{total_ooee | currency: '$' : 'symbol' : '1.0'}}</td>
+                <td>{{total_aum + total_ooee - total_dism | currency: '$' : 'symbol' : '1.0'}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{total_aum / 650000000 | percent:'1.2-2'}}</td>
+                <td>{{total_dism / 650000000 | percent:'1.2-2'}}</td>
+                <td>{{total_ooee / 650000000 | percent:'1.2-2'}}</td>
+                <td>{{ (total_aum + total_ooee - total_dism) / 650000000 | percent:'1.2-2'}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>        
+    </table>
+    
+
+    <label>Consulta: Debería incluir información respecto a si un aumento es superior al 10% de la obra o si OO.EE es superior a 5% de la obra?</label>
+    
+</div>
+
+<router-outlet></router-outlet>
+
+
+
+
+

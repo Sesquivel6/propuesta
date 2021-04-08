@@ -1,0 +1,198 @@
+<div class="container">
+    <h3>Imputación Presupuestaria </h3>
+    <hr>
+
+    
+    
+
+    <form autocomplete="off"
+        [formGroup]="forma"
+        (ngSubmit)="guardar()">
+
+    <h5>Imputación de adjudicación</h5>
+
+    <!-- TABLA AGREGAR -->
+    <div class="row">
+    <div class="col">
+        <table class="table">
+
+            <thead class="thead-dark text-center">
+                <tr>
+                    <th></th>
+                    <th>Núm Certificado</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Monto Imputación</th>
+                    <th>Fecha Certificado</th>
+                    <th>Fecha Recepción</th>                    
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                tbody es un elemento que contiene todos los hijos del array-->
+            <tbody formArrayName="iAdjudicacion">
+                <tr *ngFor="let control of iAdjudicacion.controls; let i = index">
+                    <td> {{i + 1}}</td>
+                    <td>
+                        <input class="form-control"
+                                type="text"
+                                [formControlName]="i"
+                                placeholder=""
+                                style="">
+                    </td>
+
+                    <td>
+                        <input class="form-control"
+                                type="text"
+                                [formControlName]="i"
+                                placeholder=""
+                                style="">
+                    </td>
+
+                    <td>
+                        <input class="form-control"
+                                type="text"
+                                [formControlName]="i"
+                                placeholder=""
+                                style="">
+                    </td>
+
+                    <td>
+                        <input class="form-control"
+                                type="text"
+                                [formControlName]="i"
+                                placeholder=""
+                                style="">
+                    </td>
+
+                    <td>
+                        <input class="form-control"
+                                type="text"
+                                [formControlName]="i"
+                                placeholder=""
+                                style="">
+                    </td>
+                    
+                    
+                    <td>
+                        <button class="btn btn-danger"
+                                (click)="borrarAdjudicacion(i)">
+                            X
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                type="button"
+                (click)="agregarAdjudicacion()"
+                >
+            Agregar
+        </button>
+    </div>
+</div>
+
+
+    <!-- POLIZAS DE SEGURO -->
+
+    <h5>Imputación de modificaciones</h5>
+    <hr>
+
+    <!-- TABLA AGREGAR -->
+    <div class="row">
+        <div class="col">
+            <table class="table">
+    
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th></th>
+                        <th>Núm Certificado</th>
+                        <th>Fecha Solicitud</th>
+                        <th>Monto Imputación</th>
+                        <th>Fecha Certificado</th>
+                        <th>Fecha Recepción</th>                    
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                    tbody es un elemento que contiene todos los hijos del array-->
+                <tbody formArrayName="iAdjudicacion">
+                    <tr *ngFor="let control of iAdjudicacion.controls; let i = index">
+                        <td> {{i + 1}}</td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    style="">
+                        </td>
+    
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    style="">
+                        </td>
+    
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    style="">
+                        </td>
+    
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    style="">
+                        </td>
+    
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    style="">
+                        </td>
+                        
+                        
+                        <td>
+                            <button class="btn btn-danger"
+                                    (click)="borrarAdjudicacion(i)">
+                                X
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+    
+            <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                    type="button"
+                    (click)="agregarModificacion()"
+                    >
+                Agregar
+            </button>
+        </div>
+    </div>
+    
+<!-- 
+    <h5>Imputación de adjudicación</h5>
+    <ul>
+        
+        <li>id                  </li>
+        <li>id_contrato         </li>
+        <li>tipo_imputacion     </li>
+        <li>fecha_solicitud     </li>
+        <li>num_certificado     </li>
+        <li>fecha_certificado   </li>
+        <li>fecha_recepcion     </li>
+
+
+    </ul>     -->
+
+

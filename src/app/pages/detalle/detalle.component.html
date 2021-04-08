@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<br>
+<nav mat-tab-nav-bar>
+    <a  mat-tab-link 
+        *ngFor="let link of navLinks"
+        [routerLink]="link.path"
+        routerLinkActive
+        #router="routerLinkActive"
+        [active]="router.isActive"
+        > {{link.label}} 
+    </a>
+    </nav>
+    
+    <div class="container-fluid mt-3">
+        <router-outlet></router-outlet>
+    </div>
+    

@@ -1,0 +1,134 @@
+<app-navbar></app-navbar>
+<div class="container-fluid" >
+
+<hr>
+
+<div class="row">
+    
+
+    <aside class="col-md-2">
+        
+        <br>
+        <br>
+        <br>
+        <br>
+    
+            
+        <nav class="card">
+            
+            <ul class="menu-category">
+                <br>
+
+                <li> 
+                    <input class="form-check-input" type="checkbox" value="" id="9">
+                    <label class="form-check-label" for="9">
+                    Mostrar todo
+                    </label>
+                </li>
+
+                <hr>
+
+                <li> 
+                    <input class="form-check-input" type="checkbox" value="" id="1">
+                    <label class="form-check-label" for="1">
+                    Campamentos
+                    </label>
+                </li>
+                <li> 
+                    <input class="form-check-input" type="checkbox" value="" id="2">
+                    <label class="form-check-label" for="2">
+                    Conservación de parques
+                    </label>
+                </li><li> 
+                    <input class="form-check-input" type="checkbox" value="" id="3">
+                    <label class="form-check-label" for="3">
+                    FSEV
+                    </label>
+                </li><li> 
+                    <input class="form-check-input" type="checkbox" value="" id="4">
+                    <label class="form-check-label" for="5">
+                    Infraestructura Sanitaria
+                    </label>
+                </li><li> 
+                    <input class="form-check-input" type="checkbox" value="" id="5">
+                    <label class="form-check-label" for="5">
+                    Pavimentos Pariticpativos
+                    </label>
+                </li>
+                <li> 
+                    <input class="form-check-input" type="checkbox" value="" id="6">
+                    <label class="form-check-label" for="6">
+                    Plan Valparaíso
+                    </label>
+                </li>
+                <li> 
+                    <input class="form-check-input" type="checkbox" value="" id="7">
+                    <label class="form-check-label" for="7">
+                    Planes urbanos (PUE)
+                    </label>
+                </li>
+                <li> 
+                    <input class="form-check-input" type="checkbox" value="" id="8">
+                    <label class="form-check-label" for="8">
+                    Proyecto Urbano (PUI)
+                    </label>
+                </li>
+                <li> 
+                    <input class="form-check-input" type="checkbox" value="" id="8">
+                    <label class="form-check-label" for="8">
+                    Recuperación de barrios
+                    </label>
+                </li>
+                <li> 
+                    <input class="form-check-input" type="checkbox" value="" id="8">
+                    <label class="form-check-label" for="8">
+                    Espacios Públicos
+                    </label>
+                </li>
+                <li> 
+                    <input class="form-check-input" type="checkbox" value="" id="8">
+                    <label class="form-check-label" for="8" >
+                    Vialidad Urbana
+                    </label>
+                </li>
+                
+                    
+            </ul>
+        </nav>
+    </aside> <!-- col.// -->
+
+    <div class="col-md-9">
+<app-tablaejecucion></app-tablaejecucion>
+<div class="flex">
+    <div class="flex-item">            
+        <canvas baseChart width="1200" height="400"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    [plugins]="lineChartPlugins"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+        </canvas> 
+    </div>
+    <br>
+    <div class="flex-item">
+        <table class="table table-responsive table-condensed">
+        <tr>
+            <th *ngFor="let label of lineChartLabels">{{label}}</th>
+        </tr>
+        <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
+            <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+        </tr>
+        </table>
+    </div>
+</div>
+</div>
+
+</div>
+
+    
+
+</div>

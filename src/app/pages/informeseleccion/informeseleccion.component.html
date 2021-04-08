@@ -1,0 +1,375 @@
+<div class="container">
+    
+        
+    <h3>Informe Selección</h3>
+            
+
+    <!-- RESPECTO AL INFORME TÉCNICO -->
+
+    <hr>
+    <h5>Del Informe</h5>
+
+    
+    <!-- <ul>
+        <li>id                        </li>  
+        <li>id_contrato               </li>              
+        <li>fecha_informe             </li>  
+        <li>hora_ingreso              </li>  
+        <li>ingreso_propuestas        </li>  
+        <li>encargadoPropuestas       </li>  
+        <li>Ingreso_Encargado         </li>  
+    </ul> -->
+
+    <div class="row ">
+        <div class="col-sm-3">
+            <label>Fecha Programada</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder="Fecha Apertura + 5 días"        
+            name="nombre">
+        </div>
+
+
+        <div class="col-sm-3"
+             *ngIf="contrato.ingreso_memo">
+            <label>Fecha Recepción</label>
+            <input type="text"
+            class="form-control"
+            required
+            value="03/03/2021 09:30"
+            placeholder="Fecha Apertura + 5 días"        
+            name="nombre">
+            <small>recepción por encargado</small>
+        </div>
+    </div>
+    <br>
+    
+    <div class="row ">
+
+        <!-- FECHA INFORME -->
+        <div class="form-group col-sm-3">
+        <label>Fecha Informe</label>
+        <input type="text"
+        class="form-control"
+        required
+        placeholder="Fecha emisión informe"        
+        name="nombre">
+        </div>
+    
+        <!-- Ingreso propuestas -->
+        <div class="form-group col-sm-3">
+            <label>Ingreso propuestas</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder="fecha envío propuestas"
+            
+            name="poder">
+        </div>
+    
+        <div class="form-group col-sm-3">
+            <label>Encargado Adjudicación</label>
+            <select name="" 
+                                    id="" 
+                                    class="form-control" 
+                                    >
+                                    <option> </option>   
+                                    <option>RBG </option>
+                                    <option>PDV </option>
+                                    <option>JMO </option>
+                                    <option>NAP </option>
+                                    <option>FRP </option>
+                                    <option>MLH </option>
+                                    <option>XRT </option>
+                                    <option>CHC </option>
+                            
+                            </select>
+            </div>
+    
+        
+            
+                <!-- Documento Recibido -->
+            <div class="form-group col-sm-3 mt-4">
+                                
+                <button *ngIf="contrato.ingreso_memo" 
+                        (click)="contrato.ingreso_memo = false"
+                        class="btn btn-outline-success sm-3" 
+                        type="button"
+                        >
+                        Recibido
+                </button>
+
+                <button class="btn btn-outline-danger sm-3" 
+                        type="button"
+                        *ngIf="!contrato.ingreso_memo"
+                        (click)="contrato.ingreso_memo = true"
+                        >
+                    Sin recibir
+                </button>        
+            </div>
+        
+            <hr>
+            
+        </div>
+
+        <!-- FIN DOCUMENTO RECIBIDO -->
+
+    <hr>
+    <h5>Participantes de la comisión</h5>
+
+    <!-- <ul>
+        
+        <li>id                         </li>
+        <li>id_informe                 </li>
+        <li>id_funcionarioParticipante </li>
+    </ul> -->
+
+    <form autocomplete="off"
+        [formGroup]="forma"
+        (ngSubmit)="guardar()">
+    
+    <!-- Participantes comisión -->
+    
+    
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+    
+                <thead class="thead-dark">
+                    <tr>
+                        <th>N°</th>
+                        <th>Funcionario</th>
+                        <th>Profesión</th>
+                        <th>Función</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                    tbody es un elemento que contiene todos los hijos del array-->
+                <tbody formArrayName="comision">
+                    <tr *ngFor="let control of comision.controls; let i = index">
+                        <td> {{i + 1}}</td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="Dropdown Funcionarios">
+                        </td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="Dropdown Funcionarios">
+                        </td>
+                        <td>
+                            <!-- DROPDOWN FUNCION -->
+                            <select name="" 
+                                    id="" 
+                                    class="form-control" 
+                                    >
+                            <option value=""></option>
+                            <option value="pd">Presidente</option>
+                            <option value="co">Comisión</option>
+                            <option value="su">Suplente</option>
+                            <option value="se">SEREMI</option>
+                            
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger"
+                                    (click)="borrarComision(i)">
+                                Borrar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                    type="button"
+                    (click)="agregarComision()"
+                    >
+                Agregar
+            </button>
+        </div>
+    </div>
+
+        
+    <h5>De los oferentes</h5>
+
+    <!-- <ul>
+        <li>id              </li>
+        <li>id_contrato     </li>
+        <li>id_contratista  </li>
+        <li>monto_ofertado  </li>
+        <li>plazo_ofertado  </li>
+    </ul> -->
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+    
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>N°</th>
+                        <th>Oferente</th>
+                        <th>Monto Ofertado</th>
+                        <th>Plazo ofertado</th>
+                        <!-- <th>Aceptación</th> Propuestas solicita no incluir --> 
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                    tbody es un elemento que contiene todos los hijos del array-->
+                <tbody formArrayName="pasatiempos">
+                    <tr *ngFor="let control of pasatiempos.controls; let i = index">
+                        <td> {{i + 1}}</td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="">
+                        </td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="">
+                        </td>
+                        
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="">
+                        </td>
+                        <!-- <td>
+                            <div class="form-group">
+                                <button *ngIf="contrato.ingreso_memo" 
+                                        (click)="contrato.ingreso_memo = false"
+                                        class="btn btn-outline-success ml-2" 
+                                        type="button"
+                                        >
+                                        Oferta Aceptada
+                                </button>
+                        
+                                <button class="btn btn-outline-danger ml-2" 
+                                        type="button"
+                                        *ngIf="!contrato.ingreso_memo"
+                                        (click)="contrato.ingreso_memo = true"
+                                        >
+                                        Oferta Rechazada
+                                </button>        
+                            </div>
+                        </td> -->
+                        <td>
+                            <button class="btn btn-danger"
+                                    (click)="borrarPasatiempo(i)">
+                                Borrar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                    type="button"
+                    (click)="agregarPasatiempo()"
+                    >
+                Agregar
+            </button>
+        </div>
+    </div>
+</form>
+
+    <hr>
+    <h5>Del Oferente propuesto para adjudicación</h5>
+
+    <!-- <ul>
+        <li>id                        </li>  
+        <li>id_contrato               </li>  
+        <li>id_contratista_adjudicado </li>  
+        <li>monto_ofertado            </li>  
+        <li>plazo_ofertado            </li>  
+    </ul> -->
+
+    <!-- form-check Arrastre(herencia o nuevo) -->
+                
+    <div class="form-group"  >
+
+        <div class="form-check">
+            <input  id="nuevo"
+                    [(ngModel)]="contrato"
+                    name="inlineRadioOptions" 
+                    type="radio" 
+                    class="form-check-input"
+                    value="option1" 
+                    checked required>
+            <label  class="form-check-label" 
+                    for="nuevo">
+                    No se ha identificado un oferente que cumpla todos los requisitos</label>
+        </div>
+        <div class="form-check">
+            <input  id="nuevo"
+                    [(ngModel)]="contrato" 
+                    name="inlineRadioOptions" 
+                    type="radio"
+                    value="option2" 
+                    class="form-check-input" 
+                    required>
+            <label  class="form-check-label" 
+                    for="hered">
+                    Se identifica oferente que cumpla todos los requisitos</label>
+        </div>
+
+        <!-- Se identifica contratista y se cargan los datos  -->
+        <br>
+        <div class="row"   >
+            <!-- ngIf="'tipo.contrato' === 'hered' " -->
+            <div class="row ">
+    
+                <!-- VALOR DISPONIBLE -->
+                <div class="form-group col-sm-5">
+                <label>Oferente a adjudicar</label>
+                <input type="text"
+                class="form-control"
+                required
+                placeholder="Dropdown contratista participante"
+                
+                name="nombre">
+                </div>
+            
+                <!-- VALOR PRESUPUESTO OFICIAL ESTIMATIVO -->
+                <div class="form-group col-sm-4">
+                    <label>Monto ofertado</label>
+                    <input type="text"
+                    class="form-control"
+                    required
+                    placeholder="valor contratista "
+                    
+                    name="poder">
+                </div>
+            
+                <div class="form-group col-sm-3">
+                    <label>Plazo ofertado</label>
+                    <input type="text"
+                    class="form-control"
+                    required
+                    placeholder="plazo"
+                    
+                    name="nombre">
+                </div>
+                
+            </div>
+        </div>                                                   
+    </div>
+
+        
+    
+    
+        
+
+
+            

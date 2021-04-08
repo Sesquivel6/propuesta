@@ -1,0 +1,227 @@
+<div class="container">
+
+<main>
+    <div class="container">
+
+
+    <div class="row animated fadeIn faster">
+    <div class="col">
+        <h4 class="mb-3">Información del contrato</h4>
+
+        <!-- NGSUBMIT FORM -->
+        <form (ngSubmit)="guardar( f )"
+                #f = "ngForm">
+            <!-- ID -->
+            <!-- <div class="form-group">
+                <label>ID generado</label>
+                <input type="text"
+                class="form-control"
+                disabled="disabled"
+                placeholder="Firebase ID"
+                [(ngModel)]="heroe.id"
+                name="id">           
+                <small class="form-text text-muted"> Este campo es autogenerado</small>
+            </div> -->
+
+            
+                <!-- form-check tipo de contrato -->
+            <div class="form-group">
+                <label><h6>Tipo de contrato</h6></label>
+                <div class="form-check">
+                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                <label class="form-check-label" for="credit">Consultoría</label>
+                </div>
+                <div class="form-check">
+                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+                <label class="form-check-label" for="paypal">Obra</label>
+                </div>
+            </div>
+
+            <!-- form-check Arrastre(herencia o nuevo) -->
+                
+            <!-- form-check Arrastre(herencia o nuevo) -->
+                
+        <div class="form-group" >
+            <label><h6>Tipo de proyecto</h6></label>              
+            <div class="form-check">
+                <input  id="nuevo"
+                        [(ngModel)]="contrato"
+                        name="inlineRadioOptions" 
+                        type="radio" 
+                        class="form-check-input"
+                        value="option1" 
+                        checked required>
+                <label  class="form-check-label" 
+                        for="nuevo">
+                        Nuevo</label>
+            </div>
+            <div class="form-check">
+                <input  id="nuevo"
+                        [(ngModel)]="contrato" 
+                        name="inlineRadioOptions" 
+                        type="radio"
+                        value="option2" 
+                        class="form-check-input" 
+                        required>
+                <label  class="form-check-label" 
+                        for="hered">
+                        Licitación Previa</label>
+            </div>
+            <br>
+            <!-- ARRASTRE (HERENCIA) IF checkArrastre == hereditario -->
+            
+            <div class="row" *ngIf="contrato === 'option2'?true:false">
+                <div class="form-group col-sm-6">
+                <label>Proyecto Arrastre</label>
+                <input type="text"
+                class="form-control"
+                required
+                placeholder="Dropdown o buscador de licitaciones"
+                [(ngModel)]="heroe.poder"
+                name="poder">              
+            </div>
+            </div>
+            <hr>
+            
+            
+
+            <div class="row ">
+
+                <!-- NOMBRE CONTRATO -->
+            <div class="form-group col-sm-6">
+                <label>Nombre Contrato</label>
+                <input type="text"
+                class="form-control"
+                required
+                placeholder=""
+                [(ngModel)]="heroe.nombre"
+                name="nombre">
+            </div>
+
+                <!-- NOMBRE PROGRAMA -->
+            <div class="form-group col-sm-6">
+            <label>Nombre Programa</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder="Dropdown nombres programa"
+            [(ngModel)]="heroe.poder"
+            name="poder">
+            </div>
+        </div>
+
+        <!-- N° LP, TIPO, AÑO,       ENCARGADO, ENCARGADO PROYECTO -->
+        <div class="row">
+                            
+
+        <!-- Número Licitación -->
+        <div class="form-group col-md-1">
+            <label >N°</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder="000"
+            
+            style="width:80px;">
+        </div>
+
+        <!-- Tipo Licitación -->
+        <div class="form-group col-md-2">
+            <label>Tipo</label>
+            <select name="" 
+                    id="" 
+                    class="form-control" 
+                    >
+            <option value=""></option>
+            <option value="TD">Trato Directo</option>
+            <option value="LP">Licitación Pública</option>
+            <option value="LV">Licitación Privada</option>
+            
+            </select>
+        </div>
+
+        <!-- año -->
+        <div class="form-group col-md-3">
+            <label>Año</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder="2021"
+            
+            style="width:80px;">
+        </div>
+
+
+
+        <div class="form-group col-md-3">
+            <label  for="state" 
+                    class="form-label"
+                    >Encargado Bases </label>
+            <select class="form-control " 
+                    id="state" 
+                    required
+                    >
+                    <option> </option>   
+                    <option>RBG </option>
+                    <option>PDV </option>
+                    <option>JMO </option>
+                    <option>NAP </option>
+                    <option>FRP </option>
+                    <option>MLH </option>
+                    <option>XRT </option>
+                    <option>CHC </option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label  for="state" 
+                    class="form-label"
+                    >Subtítulo </label>
+            <select class="form-control " 
+                    id="state" 
+                    required
+                    >
+                    <option> </option>   
+                    <option>Subtitulo 31</option>
+                    <option>Subtitulo 33</option>
+                    <option>MTT</option>
+                    <option>FNDR</option>
+                </select>
+                        
+        </div>
+    </div>
+
+            <!-- FIN N° LP, TIPO, AÑO,       ENCARGADO, ENCARGADO PROYECTO -->
+
+
+            
+            <div class="row mt-2">
+
+                <!-- COMUNA -->
+            <div class="form-group col-sm-6">
+                <label>COMUNA</label>
+                <input type="text"
+                class="form-control"
+                required
+                placeholder="dropdown comunas"
+                [(ngModel)]="heroe.nombre"
+                name="nombre">
+            </div>
+
+                <!-- nBIP -->
+                <div class="form-group col-sm-6">
+                <label>Número BIP</label>
+                <input type="text"
+                class="form-control"
+                required
+                placeholder="00000-0"
+                [(ngModel)]="heroe.nombre"
+                name="nombre">
+                <small  class="form-text text-muted"> 
+                    Habrán casos especiales en donde el valor BIP podrá ser nulo (Campamentos, entre otros).
+                </small>
+                </div>
+                
+                
+                </div>
+            

@@ -1,0 +1,328 @@
+<div class="container">
+    <h5>Antecedentes de la Licitación</h5>
+    <hr>
+
+            <!-- MONTOS PROGRAMADOS -->
+            <!-- <h5>Montos Programados</h5>
+            <ul>
+        
+                <li>id                  </li>
+                <li>id_contrato         </li>
+                <li>esMontoUf           </li>
+                <li>monto_disponible    </li>
+                <li>monto_oficialEst    </li>
+                <li>monto_Proforma      </li>
+                <li>plazo               </li>
+        
+            </ul> -->
+
+<form autocomplete="off"
+        [formGroup]="forma"
+        (ngSubmit)="guardar()">
+
+<div class="form-group" >
+    <label>Unidad tributaria</label>              
+    <div class="form-check">
+        <input  id="nuevo"
+                
+                name="inlineRadioOptions" 
+                type="radio" 
+                class="form-check-input"
+                value="option1" 
+                checked required>
+        <label  class="form-check-label" 
+                for="nuevo">
+                Peso (CLP)</label>
+    </div>
+    <div class="form-check">
+        <input  id="nuevo"
+                
+                name="inlineRadioOptions" 
+                type="radio"
+                value="option2" 
+                class="form-check-input" 
+                required>
+        <label  class="form-check-label" 
+                for="hered">
+                Unidad de Fomento (UF)</label>
+
+    </div>
+</div>
+
+<div class="row ">
+
+    <!-- VALOR DISPONIBLE -->
+    <div class="form-group col-sm-3">
+    <label>Monto Disponible</label>
+    <input type="text"
+    class="form-control"
+    required
+    placeholder="Valor disponible según resolución"
+    
+    name="nombre">
+    </div>
+
+    <!-- VALOR PRESUPUESTO OFICIAL ESTIMATIVO -->
+    <div class="form-group col-sm-3">
+        <label>Monto Oficial Estimativo</label>
+        <input type="text"
+        class="form-control"
+        required
+        placeholder="Valor determinado según costos"
+        
+        name="poder">
+    </div>
+
+    <div class="form-group col-sm-2">
+        <label>Valor Proforma</label>
+        <input type="text"
+        class="form-control"
+        required
+        placeholder="Considerar valor proforma si es que requiere"
+        
+        name="nombre">
+        </div>
+
+    <div class="form-group col-sm-2">
+        <label>Plazo total</label>
+        <input type="text"
+        class="form-control"
+        required
+        placeholder="Plazo proyecto"
+        
+        name="nombre">
+        </div>
+    </div>
+
+    <!-- APROBACIÓN BASES TÉCNICAS -->
+    <hr>
+    <h5>Aprobación de bases técnicas</h5>
+    <br>
+    <!-- <ul>
+
+        <li>id                </li>  
+        <li>id_contrato       </li>  
+        <li>tipo_resolucion   </li>  
+        <li>numero_resolucion </li>  
+        <li>fecha_resolucion  </li>  
+
+    </ul> -->
+
+    <div class="row ">
+
+    <!-- Dropdown tipo de contrato -->
+    
+        <div class="form-group col-sm-2">
+        <label for="state" class="form-label">Resolución </label>
+            <div class="nav-item dropdown">
+                <button class="btn btn-primary-outline dropdown-toggle bg-light" 
+                        type="button" 
+                        id="dropdownMenu2" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                    Tipo
+                </button>
+        
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" type="button" routerLink="heroes" >
+                        Afecta
+                    </a>
+                    <a class="dropdown-item" type="button" routerLink="/heroe/nuevo">
+                        Exenta
+                    </a>    
+                </div>
+            </div>
+        </div>
+    
+        <!-- NUMERO DE RESOLUCIÓN -->
+        <div class="form-group col-sm-3">
+            <label>Número de resolución</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder=""
+            
+            name="poder">
+        </div>
+    
+        <!-- FECHA RESOLUCIÓN -->
+        <div class="form-group col-sm-2">
+            <label>Fecha resolución</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder=""
+            
+            name="nombre">
+            </div>  
+        
+        </div>
+
+
+    <hr>
+    <!-- CONTRALORÍA -->
+    <h5>Contraloría</h5>
+    <br>
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+    
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>N°</th>
+                        <th>Envío</th>
+                        <th>Ingreso</th>
+                        <th>Salida</th>
+                        <th>Observación</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                    tbody es un elemento que contiene todos los hijos del array-->
+                <tbody formArrayName="pasatiempos">
+                    <tr *ngFor="let control of pasatiempos.controls; let i = index">
+                        <td> {{i + 1}}</td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="">
+                        </td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="">
+                        </td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="">
+                        </td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="">
+                        </td>
+                        <td>
+                            <button class="btn btn-danger"
+                                    (click)="borrarPasatiempo(i)">
+                                Borrar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                    type="button"
+                    (click)="agregarPasatiempo()"
+                    >
+                Agregar
+            </button>
+        </div>
+    </div>
+
+    <!-- <ul>
+
+        <li>id_ingreso          </li>
+        <li>id_contrato         </li>
+        <li>envio_contraloria   </li>
+        <li>ingreso_contraloria </li>
+        <li>salida_contraloria  </li>
+        <li>observacion         </li>
+
+    </ul> -->
+
+
+    <!-- PUBLICACIONES Y APERTURAS -->
+
+    <hr>
+    <h5>Publicaciones y Apertura</h5>
+    <br>
+    
+    <div class="row ">
+
+        
+        <div class="form-group col-sm-3">
+        <label>Publicación M. Público</label>
+        <input type="text"
+        class="form-control"
+        required
+        placeholder=""
+        
+        name="nombre">
+        </div>
+
+        
+        <div class="form-group col-sm-3">
+            <label>Publicación Prensa</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder=""
+            
+            name="nombre">
+            <small  class="form-text text-muted"> 
+                Solo obras.
+            </small>
+        </div>
+    
+        
+
+        <div class="form-group col-sm-3">
+            <label>Fecha Apertura</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder="01/01/2021 08:30"
+            
+            name="nombre">
+        </div>
+    </div>
+    
+
+    <hr>
+    <h5>De las Consultas</h5>
+    
+    <br>
+    
+
+    <div class="row">
+
+        <div class="form-group col-sm-3">
+            <label>Número Adiciones</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder=""
+            
+            name="nombre">
+        </div>
+
+        
+        <div class="form-group col-sm-3">
+            <label>Número Aclaraciones</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder=""
+            
+            name="poder">
+        </div>
+
+        <div class="form-group col-sm-3">
+            <label>Fecha término de consultas</label>
+            <input type="text"
+            class="form-control"
+            required
+            placeholder="Fecha X + Y días"
+            
+            name="poder">
+            <small>Quedan 5 días!</small>
+        </div>
+    
+    </div>

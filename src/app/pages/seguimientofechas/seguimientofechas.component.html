@@ -1,0 +1,64 @@
+<div class="container">
+<h3>Seguimiento Fechas</h3>
+<hr>
+
+    <form (ngSubmit) = "guardar( f )"
+            #f="ngForm">
+
+    <div class="row" >        
+        <div class="form-group col-sm-6">
+        <label>Número Memo:</label>
+        <input type="text"
+        class="form-control"
+        required
+        placeholder=""
+        >        
+        </div>
+    <div class="form-group col-sm-6">
+        <label>Fecha Memo:</label>
+        <input type="text"
+        class="form-control"
+        required
+        placeholder=""
+        >              
+        
+        </div>
+    </div>
+
+    <!-- Documento Recibido -->
+    <div class="form-group">
+        <label>Estado Recepción </label>
+        
+        <button *ngIf="contrato.ingreso_memo" 
+                (click)="contrato.ingreso_memo = false"
+                class="btn btn-outline-success ml-2" 
+                type="button"
+                >
+                Recibido
+        </button>
+
+        <button class="btn btn-outline-danger ml-2" 
+                type="button"
+                *ngIf="!contrato.ingreso_memo"
+                (click)="contrato.ingreso_memo = true"
+                >
+            Sin recibir
+        </button>        
+    </div>
+
+    <hr>
+    <p *ngIf="contrato.ingreso_memo">Fecha recepción: <input type="text" class="form-control" style="width:300px" value="03/03/2021 09:30"></p>
+
+
+
+<!-- 
+<ul>
+
+    <li>id</li>
+    <li>id_contrato</li>
+    <li>numMemo</li>
+    <li>fecha_memo</li>
+    <li>ingreso_real</li>
+    
+
+</ul> -->

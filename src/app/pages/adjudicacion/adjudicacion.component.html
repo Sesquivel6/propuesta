@@ -1,0 +1,276 @@
+<div class="container">
+    <form autocomplete="off"
+        [formGroup]="forma"
+        (ngSubmit)="guardar()">
+    <h3>Adjudicación del contrato</h3>
+    <hr>
+    <h5>Del Contrato</h5>
+    <br>
+<!-- 
+    <ul>
+    
+        <li>id                    </li>  
+        <li>id_contrato           </li>  
+        <li>tipo_resolucion       </li>  
+        <li>numero_resolucion     </li>  
+        <li>fecha_resolucion      </li>  
+        <li>efecto                </li>  
+        <li>fecha_notificacion    </li>  
+        <li>fecha_firmaContrato   </li>  
+        <li>fecha_procotolizacion </li>  
+        <li>id_imputacion         </li>  
+    
+    </ul> -->
+    
+    <!-- FORMULARIO RESOLUCIONES -->
+
+
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+    
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>N°</th>
+                        <th>Tipo Res.</th>
+                        <th>N° Res.</th>
+                        <th>Fecha Res.</th>
+                        <th>Efecto Res.</th>
+                        <th>Estado</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                    tbody es un elemento que contiene todos los hijos del array-->
+                <tbody formArrayName="resoluciones">
+                    <tr *ngFor="let control of resoluciones.controls; let i = index">
+                        <td> {{i + 1}}</td>
+                        <td>
+                            <button class="btn btn-primary-outline dropdown-toggle bg-light" 
+                            type="button" 
+                            id="dropdownMenu2" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false">
+                        Tipo
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" type="button"  >
+                            Afecta
+                        </a>
+                        <a class="dropdown-item" type="button" >
+                            Exenta
+                        </a>    
+                    </div>
+                        </td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="n° Resol."
+                                    style="width:90px">
+                        </td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="Fecha Resol.">
+                        </td>
+                        <td>
+                                <select name=""
+                                    id="" 
+                                    class="form-control">
+                                <option value=""></option>
+                                <option value="1">Adjudica y contrata</option>
+                                <option value="2">Acepta oferta y dispone contratación</option>
+                                <option value="3">Declara desierta</option>
+                                <option value="4">Rectifica</option>   
+                                <option value="5">Deja sin efecto</option>
+                                <option value="6">Aprueba contrato</option>
+                                <option value="7">Revoca</option>
+                                <option value="8">Suspende</option>                                      
+                            </select>                       
+                        </td>
+                        <td>
+                            <div class="form-group">
+                            <button *ngIf="contrato.ingreso_memo" 
+                                    (click)="contrato.ingreso_memo = false"
+                                    class="btn btn-outline-success ml-2" 
+                                    type="button"
+                                    >
+                                    Vigente
+                            </button>
+                    
+                            <button class="btn btn-outline-danger ml-2" 
+                                    type="button"
+                                    *ngIf="!contrato.ingreso_memo"
+                                    (click)="contrato.ingreso_memo = true"
+                                    >
+                                    S/ Efecto
+                            </button>        
+                        </div>
+                    </td>
+                        <td>
+                            <button class="btn btn-danger"
+                                    (click)="borrarResolucion(i)">
+                                x
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                    type="button"
+                    (click)="agregarResolucion()"
+                    >
+                Agregar
+            </button>
+        </div>
+    </div>
+
+
+    
+        
+
+
+
+        <!-- 
+    <ul>
+    
+        <li>id                    </li>  
+        <li>id_contrato           </li>  
+        <li>fecha_notificacion    </li>  
+        <li>fecha_firmaContrato   </li>  
+        <li>fecha_procotolizacion </li>  
+        <li>id_imputacion         </li>  
+    
+    </ul> -->
+
+
+
+    <div class="row ">
+
+    <!-- PROCESO LICITATORIO -->
+    <div class="form-group col-sm-3">
+    <label>Fecha Notificación</label>
+    <input type="text"
+    class="form-control"
+    required
+    placeholder=""
+    
+    name="nombre">
+    </div>
+
+    <!-- VALOR PRESUPUESTO OFICIAL ESTIMATIVO -->
+    <div class="form-group col-sm-3">
+        <label>Fecha firma contrato</label>
+        <input type="text"
+        class="form-control"
+        required
+        placeholder=""
+        
+        name="poder">
+    </div>
+
+    <div class="form-group col-sm-3">
+        <label>fecha protocolización</label>
+        <input type="text"
+        class="form-control"
+        required
+        placeholder=""
+        
+        name="nombre">
+        <small>Solo obras</small>
+        </div>
+
+    
+    </div>
+
+    
+    
+    
+    <h5>Contraloría</h5>
+    <!-- <ul>
+        <li>id_ingreso          </li>    
+        <li>id_contrato         </li>    
+        <li>envio_contraloria   </li>    
+        <li>ingreso_contraloria </li>    
+        <li>salida_contraloria  </li>    
+        <li>observacion         </li>   
+    </ul> -->
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+    
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>N°</th>
+                        <th>N° RES</th>
+                        <th>Envío</th>
+                        <th>Ingreso</th>
+                        <th>Salida</th>
+                        <th>Pronunciamiento</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                    tbody es un elemento que contiene todos los hijos del array-->
+                <tbody formArrayName="pasatiempos">
+                    <tr *ngFor="let control of pasatiempos.controls; let i = index">
+                        <td> {{i + 1}}</td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="Listado de Res.">
+                        </td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="">
+                        </td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="">
+                        </td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="">
+                        </td>
+                        <td>
+                            <select name="" 
+                                    id="" 
+                                    class="form-control" 
+                                    >
+                                    <option> </option>   
+                                    <option>Tomada razón </option>
+                                    <option>Tomada razón c/ alcances </option>
+                                    <option>Representada </option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger"
+                                    (click)="borrarPasatiempo(i)">
+                                Borrar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                    type="button"
+                    (click)="agregarPasatiempo()"
+                    >
+                Agregar
+            </button>
+        </div>
+    </div>
+

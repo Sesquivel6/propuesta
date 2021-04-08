@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+
+<br>
+    <div class="container">
+        <div>
+            <div style="display: block">
+            <canvas baseChart
+                width="1200" height="400"
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [colors]="barChartColor"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+            </canvas>
+            </div>
+            
+        </div>
+    </div>
+
+    

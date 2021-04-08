@@ -1,0 +1,88 @@
+<div class="container">
+    <h3>Liquidación de Contrato</h3>
+    <hr>
+    <h5>Datos Liquidación</h5>
+
+
+    <form autocomplete="off"
+        [formGroup]="forma"
+        (ngSubmit)="guardar()">
+
+
+
+    <!-- TABLA AGREGAR -->
+    <div class="row">
+    <div class="col">
+        <table class="table">
+
+            <thead class="thead-dark text-center">
+                <tr>
+                    <th></th>
+                    <th>Núm Resolución</th>
+                    <th>Fecha Resolución</th>
+                    <th>Núm interno</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                tbody es un elemento que contiene todos los hijos del array-->
+            <tbody formArrayName="liquidacion">
+                <tr *ngFor="let control of liquidacion.controls; let i = index">
+                    <td> {{i + 1}}</td>
+
+                    <td>
+                        <input class="form-control"
+                                type="text"
+                                [formControlName]="i"
+                                placeholder=""
+                                style="">
+                    </td>
+
+                    <td>
+                        <input class="form-control"
+                                type="text"
+                                [formControlName]="i"
+                                placeholder=""
+                                style="">
+                    </td>
+
+                    <td>
+                        <input class="form-control"
+                                type="text"
+                                [formControlName]="i"
+                                placeholder=""
+                                style="">
+                    </td>
+                    
+                    
+                    <td>
+                        <button class="btn btn-danger"
+                                (click)="borrarLiquidacion(i)">
+                            X
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                type="button"
+                (click)="agregarLiquidacion()"
+                >
+            Agregar
+        </button>
+    </div>
+</div>
+
+
+<!-- 
+<ul>
+    <li>id_contrato  </li>   
+    <li>id_contrato  </li>   
+    <li>num_res      </li>   
+    <li>fecha_res    </li>   
+    <li>num_interno  </li>   
+
+    
+</ul> -->
+

@@ -1,0 +1,104 @@
+<!-- NAVBAR  -->
+
+<div class="row-w90">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+        <div class="collapse navbar-collapse" 
+            id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+    
+            
+            <li class="nav-item dropdown">
+                <button class="btn btn-primary-outline dropdown-toggle bg-light" 
+                        type="button" 
+                        id="dropdownMenu2" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                    Contratos
+                </button>
+    
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" type="button" routerLink="heroes" >
+                    <i class="fa fa-search"></i>
+                    Consultar Contrato
+                </a>
+                <a class="dropdown-item" type="button" routerLink="/heroe/nuevo">
+                    <i class="fa fa-file-alt"></i>
+                    Ingresar Contrato
+                </a>
+                <hr class="dropdown-divider">
+                <a class="dropdown-item" routerLink="/home" >
+                    <i class="fa fa-question-circle"></i>
+                    Dropdown #3
+                </a>
+            </div>
+
+            <li class="nav-item dropdown">
+                <button class="btn btn-primary-outline dropdown-toggle bg-light" 
+                        type="button" 
+                        id="dropdownMenu2" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                    Reportes
+                </button>
+    
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" type="button" routerLink="/primerinforme" >
+                    <i class="fa fa-chart-bar"></i>
+                    Reporte 1
+                </a>
+
+                <a class="dropdown-item" type="button" routerLink="/segundoinforme">
+                    <i class="fa fa-file-chart-line"></i>
+                    Reporte 2
+                </a>
+
+                <a class="dropdown-item" type="button" routerLink="/tercerinforme">
+                    <i class="fas fa-chart-pie"></i>
+                    Reporte 3
+                </a>
+
+                <hr class="dropdown-divider">
+                <a class="dropdown-item" routerLink="/calendar" >
+                    <i class="fa fa-calendar"></i>
+                    Calendario 
+                </a>
+                <a class="dropdown-item" routerLink="/listcalendar" >
+                    <i class="fas fa-clipboard-list"></i>
+                    Listado 
+                </a>
+            </div>
+            
+    
+            <!-- <li class="nav-item">
+                <a class="nav-link" 
+                
+                routerLinkActive="active"
+                >
+                    Opción 1 
+                    <span class="sr-only">
+                        (current)
+                    </span>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" 
+                    
+                    routerLinkActive="active"
+                    >Opción 2</a>
+                </li> -->
+        
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" 
+                    type="text" 
+                    placeholder="(Ejemplo: 000LP2020)"
+                    [(ngModel)]="searchText"
+                    name="searchText"
+                    aria-label="Search">        
+        </div>
+        </div>
+    </nav>
+</div>
+
+    <!-- FIN NAVBAR  -->

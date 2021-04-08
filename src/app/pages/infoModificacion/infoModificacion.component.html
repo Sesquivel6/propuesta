@@ -1,0 +1,96 @@
+<div class="container">
+    <hr>
+
+    
+
+    
+        <h5>De la Modificación</h5>
+        <hr>
+    
+    <form autocomplete="off"
+            [formGroup]="forma"
+            (ngSubmit)="guardar()">
+    
+        <!-- TABLA AGREGAR -->
+        <div class="row">
+        <div class="col">
+            <table class="table">
+    
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th></th>
+                        <th>N° Informe</th>
+                        <th>Ingreso Propuestas</th>
+                        <th>N° Resolución</th>
+                        <th>Fecha Resolución</th>
+                        <th>Fecha Protocolización</th>
+                        
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                    tbody es un elemento que contiene todos los hijos del array-->
+                <tbody formArrayName="pasatiempos">
+                    <tr *ngFor="let control of pasatiempos.controls; let i = index">
+                        <td> {{i + 1}}</td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="182-05"
+                                    >
+                        </td>
+
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder="23/03/2021"
+                                    >
+                        </td>
+
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    >
+                        </td>
+
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    >
+                        </td>
+
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    >
+                        </td>
+
+                        
+                        <td>
+                            <button class="btn btn-danger"
+                                    (click)="borrarPasatiempo(i)">
+                                X
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                    type="button"
+                    (click)="agregarPasatiempo()"
+                    >
+                Agregar
+            </button>
+        </div>
+    </div>
+    
+

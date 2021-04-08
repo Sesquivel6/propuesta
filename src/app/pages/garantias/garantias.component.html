@@ -1,0 +1,245 @@
+<div class="container-fluid">
+    <h3>Garantías de fiel cumplimiento</h3>
+    <hr>
+    <!-- <h5>Boletas de garantía</h5> -->
+    
+    <!-- <ul>
+        <li>    Boleta de Garantía.                           </li>  
+        <li>    Certificado de fianza a la vista.             </li>  
+        <li>    Certificado de fianza a la vista electrónico. </li>  
+        <li>    Vale vista.                                   </li>  
+        <li>    Depósito a la vista                           </li>  
+        <li>    Póliza de seguro.                             </li>  
+        <li>    Póliza de seguro electrónico.                 </li>  
+    </ul> -->
+
+<form autocomplete="off"
+        [formGroup]="forma"
+        (ngSubmit)="guardar()">
+
+    <!-- TABLA AGREGAR -->
+    <div class="row">
+    <div class="col">
+        <table class="table">
+
+            <thead class="thead-dark text-center">
+                <tr>
+                    <th></th>
+                    <th>n° Boleta</th>
+                    <th>Banco</th>
+                    <th>Moneda</th>
+                    <th>Fecha Boleta</th>
+                    <th>Vencimiento</th>
+                    <th>Tipo</th>
+                    <!-- <th>Naturaleza</th> -->
+                    <th>Vigencia</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                tbody es un elemento que contiene todos los hijos del array-->
+            <tbody formArrayName="pasatiempos">
+                <tr *ngFor="let control of pasatiempos.controls; let i = index">
+                    <td> {{i + 1}}</td>
+                    <td>
+                        <input class="form-control"
+                                type="text"
+                                [formControlName]="i"
+                                placeholder=""
+                                style="width:120px">
+                    </td>
+                    <td>
+                        <select name="ddlid_banco" 
+                                id="ddlid_banco" 
+                                class="form-control"
+                                style="width:250px">
+                            <option value=""></option>
+                            <option value="1">BANCO BICE</option>
+                            <option value="2">BANCO CONSORCIO</option>
+                            <option value="3">BANCO DE CHILE / EDWARDS CITI</option>
+                            <option value="4">BANCO FALABELLA</option>
+                            <option value="5">BANCO INTERNACIONAL</option>
+                            <option value="6">BANCO ITAU</option>
+                            <option value="7">BANCO RIPLEY</option>
+                            <option value="8">BANCO SANTANDER</option>
+                            <option value="9">BANCO SANTANDER BANEFE</option>
+                            <option value="10">BANCO SECURITY</option>
+                            <option value="11">BANCOESTADO</option>
+                            <option value="12">BCI-TBANC</option>
+                            <option value="13">COOPEUCH </option>
+                            <option value="14">CORPBANCA</option>
+                            <option value="15">SCOTIABANK</option>                        
+                        </select>
+                    </td>
+
+                    <td>
+                        
+                        <select name="" 
+                                id="" 
+                                class="form-control"
+                                style="width:80px">
+                            <option value=""></option>
+                            <option value="clp">CLP $</option>
+                            <option value="uf">UF</option>                        
+                        </select>
+                    </td>                    
+
+                    <td>
+                        <input class="form-control"
+                                type="text"
+                                [formControlName]="i"
+                                placeholder=""
+                                style="width:120px">
+                    </td>
+                    <td>
+                        <input type='text' class="form-control" id='datepicker' style="width:120px" />
+                    </td>
+                    <td>
+                        <select name="" 
+                                id="" 
+                                class="form-control"
+                                style="width:250px">
+                                <option value=""></option>
+                            <option value="1">Boleta de garantía</option>
+                            <option value="2">C. de fianza a la vista</option>
+                            <option value="3">C. de fianza a la vista electrónico</option>
+                            <option value="4">Vale vista</option>   
+                            <option value="5">Depósito a la vista</option>   
+                            <option value="6">Póliza de seguro</option>   
+                            <option value="7">Póliza de seguro electrónico</option>   
+                        </select>
+                    </td>
+
+                    <!-- <td>
+                        
+                        <select name="" 
+                                id="" 
+                                class="form-control"
+                                >
+                                <option value=""></option>
+                            <option value="1">Adjudicación de contrato</option>
+                            <option value="2">Modificación de contrato</option>
+                            <option value="3"></option>
+                            <option value="4"></option>   
+                            <option value="5"></option>   
+                            <option value="6"></option>   
+                            <option value="7"></option>   
+                        </select>
+                    </td> -->
+
+                    <td>
+                        <select name="" 
+                                id="" 
+                                class="form-control"
+                                style="width:100px">
+                            <option value=""></option>
+                            <option value="clp">Vigente</option>
+                            <option value="uf">Obsoleta</option>                        
+                        </select>
+                    </td>
+                    
+                    <td>
+                        <button class="btn btn-danger"
+                                (click)="borrarPasatiempo(i)">
+                            X
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                type="button"
+                (click)="agregarPasatiempo()"
+                >
+            Agregar
+        </button>
+    </div>
+</div>
+
+
+    <!-- POLIZAS DE SEGURO -->
+
+    <h3>Pólizas de Seguro</h3>
+    <hr>
+
+    <!-- TABLA AGREGAR -->
+    <div class="row">
+        <div class="col">
+            <table class="table">
+    
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th></th>
+                        <th>n° Documento</th>
+                        <th>Aseguradora</th>
+                        <th>Monto Asegurado</th>
+                        <th>Fecha emision</th>
+                        <th>Fecha Vencimiento</th>                    
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <!-- Debemos decirle a angular que el los tr son el arreglo pasatiempos de la tabla
+                    tbody es un elemento que contiene todos los hijos del array-->
+                <tbody formArrayName="poliza">
+                    <tr *ngFor="let control of poliza.controls; let i = index">
+                        <td> {{i + 1}}</td>
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    >
+                        </td>
+                        
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    >
+                        </td>
+                        
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    >
+                        </td>
+
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    >
+                        </td>
+
+                        <td>
+                            <input class="form-control"
+                                    type="text"
+                                    [formControlName]="i"
+                                    placeholder=""
+                                    >
+                        </td>
+                        
+                        <td>
+                            <button class="btn btn-danger"
+                                    (click)="borrarPoliza(i)">
+                                X
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <button class="btn btn-primary mt-3 mb-5 btn btn-block"
+                    type="button"
+                    (click)="agregarPoliza()"
+                    >
+                Agregar
+            </button>
+        </div>
+
+    </div>
